@@ -29,7 +29,7 @@ VALUES
   N'GHR_EMPLOYEE_EVENTS'
 , N''
 , N'TAB'
-, N'C:\FTP_DATA\DATA\DEV\Load\Interface_SS_VENUS.txt'
+, N'C:\FTP_DATA\DATA\DEV\Load\Interface.txt'
 , N'hrpn'
 , N'ghr_employee_events'
 , N'51'
