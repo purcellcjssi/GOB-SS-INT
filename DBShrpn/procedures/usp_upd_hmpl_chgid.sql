@@ -24,7 +24,7 @@ declare @ret int,
 
 declare	@w_new_chgstamp					tinyint
 
-select @w_new_chgstamp	= 0			
+select @w_new_chgstamp	= 0
 
 	select @W_ACTION_USER = suser_sname()
 
@@ -97,7 +97,7 @@ if exists( SELECT *  FROM hr_audit_ctrl tablockx with (holdlock))
 	update participant
 		set emp_id = @p_new_emp_id
 		  where emp_id = @p_old_emp_id
-	
+
 	if @p_ptcp_id_assign_meth_code = "2"
 		begin
 			update participant
@@ -109,7 +109,7 @@ if exists( SELECT *  FROM hr_audit_ctrl tablockx with (holdlock))
 				set participant_id = @p_new_emp_id,
 					chgstamp = chgstamp + 1
 				where participant_id = @p_old_emp_id
-	
+
 			update ben_plan_ptcp_comnt
 				set participant_id = @p_new_emp_id,
 					chgstamp = chgstamp + 1
@@ -158,7 +158,7 @@ if exists( SELECT *  FROM hr_audit_ctrl tablockx with (holdlock))
 			update ben_plan_ptcp_claim_comnt
 				set participant_id = @p_new_emp_id,
 					chgstamp = chgstamp + 1
-				where participant_id = @p_old_emp_id	
+				where participant_id = @p_old_emp_id
 
 			update ben_plan_ptcp_loan
 				set participant_id = @p_new_emp_id,
@@ -214,9 +214,9 @@ Commit transaction
 /* Set up the work employee status audit table                                          */
 /* ============================================================*/
 
- 
 
- 
+
+
 GO
-ALTER AUTHORIZATION ON [dbo].[usp_upd_hmpl_chgid] TO  SCHEMA OWNER 
-GO
+ALTER AUTHORIZATION ON [dbo].[usp_upd_hmpl_chgid] TO  SCHEMA OWNER
+GO;

@@ -3,7 +3,7 @@ GO
 /****** Object:  StoredProcedure [dbo].[usp_val_hepy_audit]    Script Date: 4/1/2025 4:33:00 PM ******/
 SET ANSI_NULLS OFF
 GO
-SET QUOTED_IDENTIFIER OFF
+SET QUOTED_IDENTIFIER ON
 GO
 
 
@@ -65,9 +65,9 @@ begin
     else
         return 2
 end
- 
 
- 
+
+
 GO
-ALTER AUTHORIZATION ON [dbo].[usp_val_hepy_audit] TO  SCHEMA OWNER 
-GO
+ALTER AUTHORIZATION ON [dbo].[usp_val_hepy_audit] TO  SCHEMA OWNER
+GO;

@@ -848,4 +848,4 @@ IF OBJECT_ID(N'dbo.usp_ins_pay_group', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_ins_pay_group >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_ins_pay_group >>>'
-GO
+GO;

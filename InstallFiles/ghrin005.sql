@@ -31,4 +31,4 @@ VALUES
 ,(N'DBS', N'USP_VAL_GHR_INT_BULKCOPY', @@SERVERNAME, N'DBShrpn', N'usp_ghr_int_validate_bulkcopy', 0, N'', N'', N'C', 0)
 ,(N'DBS', N'USP_VERIFICATION_RPT', N@@SERVERNAME, N'DBShrpn', N'usp_verification_rpt', 0, N'C:\sstrm80\Maildir\HCMRPT', N'', N'T', 5)
 ,(N'DBS', N'USP_VERIFICATION_RPT_CSV', @@SERVERNAME, N'DBShrpn', N'usp_verification_rpt_csv', 0, N'C:\Reports\vhcmrpt_venus', N'', N'C', 0);
-GO
+GO

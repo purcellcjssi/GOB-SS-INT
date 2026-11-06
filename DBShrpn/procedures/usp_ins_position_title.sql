@@ -1345,4 +1345,4 @@ IF OBJECT_ID(N'dbo.usp_ins_position_title', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_ins_position_title >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_ins_position_title >>>'
-GO
+GO;

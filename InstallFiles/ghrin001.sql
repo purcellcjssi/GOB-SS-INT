@@ -104,4 +104,4 @@ GO
 select *
 from DBSCOMMON.dbo.message_master
 WHERE (msg_id LIKE 'U%');
-GO
+GO

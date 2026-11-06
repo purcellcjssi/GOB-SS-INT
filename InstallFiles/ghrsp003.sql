@@ -63,7 +63,7 @@ IF OBJECT_ID(N'dbo.usp_cleanup_tbl', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_cleanup_tbl >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_cleanup_tbl >>>'
-GO
+GO;
 USE DBShrpn
 GO
 
@@ -324,7 +324,7 @@ IF OBJECT_ID(N'dbo.usp_current_data', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_current_data >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_current_data >>>'
-GO
+GO;
 USE DBShrpn
 GO
 
@@ -484,7 +484,8 @@ IF OBJECT_ID(N'dbo.usp_ghr_int_validate_bulkcopy', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_ghr_int_validate_bulkcopy >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_ghr_int_validate_bulkcopy >>>'
-GOUSE DBShrpn
+GO;
+USE DBShrpn
 go
 IF OBJECT_ID(N'dbo.usp_hsp_upd_hasg') IS NOT NULL
 BEGIN
@@ -1385,7 +1386,8 @@ IF OBJECT_ID(N'dbo.usp_hsp_upd_hasg', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_hsp_upd_hasg >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_hsp_upd_hasg >>>'
-GOUSE DBShrpn
+GO;
+USE DBShrpn
 go
 IF OBJECT_ID(N'dbo.usp_hsp_upd_hasg_reassign') IS NOT NULL
 BEGIN
@@ -2914,7 +2916,7 @@ IF OBJECT_ID(N'dbo.usp_hsp_upd_hasg_reassign', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_hsp_upd_hasg_reassign >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_hsp_upd_hasg_reassign >>>'
-GO
+GO;
 USE DBShrpn
 GO
 
@@ -3023,12 +3025,11 @@ IF OBJECT_ID(N'dbo.usp_ins_ghr_historical_message', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_ins_ghr_historical_message >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_ins_ghr_historical_message >>>'
-GOUSE [DBShrpn]
+GO;
+USE [DBShrpn]
 GO
 
 SET ANSI_NULLS OFF
-GO
-SET QUOTED_IDENTIFIER OFF
 GO
 
 
@@ -5565,17 +5566,12 @@ commit transaction
 
 GO
 ALTER AUTHORIZATION ON [dbo].[usp_ins_hemp] TO  SCHEMA OWNER
-GO
+GO;
 USE [DBShrpn]
 GO
 /****** Object:  StoredProcedure [dbo].[usp_ins_hemp_02]    Script Date: 4/1/2025 4:33:00 PM ******/
 SET ANSI_NULLS OFF
 GO
-SET QUOTED_IDENTIFIER OFF
-GO
-
-
-
 
 CREATE procedure [dbo].[usp_ins_hemp_02](
         @p_employer_taxing_ctry_code    char(2),
@@ -5605,7 +5601,7 @@ as
 /*----------------------------------------------------------------------*/
 
 declare @ret int
---execute @ret = sp_dbs_authenticate if @ret != 0 return 
+--execute @ret = sp_dbs_authenticate if @ret != 0 return
 
 select @p_rc = 1
 
@@ -5615,39 +5611,39 @@ Declare @w_other_prov_tax_1_stat_code char(1),
         @w_provincial_basic_amt       money   /*R6.0M SSA 165213 */
        ,@w_hlth_ctrb_status_code      char(1) /* kb 1383272 - def 393072 */
 
-    
-if @p_employer_taxing_ctry_code = 'CA' 
-    if not exists (Select tax_authority_id 
+
+if @p_employer_taxing_ctry_code = 'CA'
+    if not exists (Select tax_authority_id
                    From empl_canadian_tax_authority
                    Where empl_id                     = @p_employer_id and
-                         tax_authority_id = 'CANFED' and 
-                         empl_can_tax_auth_status_cd = '1') 
+                         tax_authority_id = 'CANFED' and
+                         empl_can_tax_auth_status_cd = '1')
        Select @p_rc = 50438
     else
 /* ==================================================================== */
 /*   --  Insert the emp_can_tax_authority data                          */
 /* ==================================================================== */
     Begin
-/* R6.0.03 SSA 165213 Begin */   
-	if exists(Select inc_tax_basic_amt 
+/* R6.0.03 SSA 165213 Begin */
+	if exists(Select inc_tax_basic_amt
                   from canadian_standard_tax_credits
 		  where tax_authority_id  = 'CANFED')
          Begin
 		Select @w_fed_basic_amount = inc_tax_basic_amt
         	from canadian_standard_tax_credits
 		where tax_authority_id  = 'CANFED'
-         End 
+         End
 	else
                 Select @w_fed_basic_amount = 0
 
-	if exists(Select pit_basic_amt 
+	if exists(Select pit_basic_amt
                   from canadian_standard_tax_credits
 		  where tax_authority_id  = @p_tax_authority_id)
          Begin
  		Select @w_provincial_basic_amt = pit_basic_amt
 		from canadian_standard_tax_credits
 		where tax_authority_id  = @p_tax_authority_id
-         End 
+         End
 	else
 	          Select @w_provincial_basic_amt = 0
 
@@ -5667,12 +5663,12 @@ if @p_employer_taxing_ctry_code = 'CA'
     begin
      if @p_tax_authority_id = 'QC'
         Select @w_hlth_ctrb_status_code = '2'
-    end    
+    end
    /* kb 1383272 - def 393072 end */
 
  /*     @w_quebec_basic_amt = qit_basic_amt  			R6.0 SSA 165213 */
  /*       From canadian_standard_tax_credits			R6.0 SSA 165213 */
-/* R6.0.03 SSA 165213 End */ 
+/* R6.0.03 SSA 165213 End */
         Insert into emp_can_tax_authority
         (emp_id,
              empl_id,
@@ -5736,8 +5732,8 @@ if @p_employer_taxing_ctry_code = 'CA'
 	     /* R6.0M SSA 165213 new columns added to table */
              inc_tax_caregiver_amt,
 	     pit_disability_amt,
-             pit_transferred_amt,	
-             /* R6.0M SSA 165213 End */	
+             pit_transferred_amt,
+             /* R6.0M SSA 165213 End */
 	     chgstamp
              ,ppip_status_code /* 566986 */
              ,inc_tax_infirm_depn_amt        /* 585743 */
@@ -5747,7 +5743,7 @@ if @p_employer_taxing_ctry_code = 'CA'
              ,cpp_election_date         --1061321 [delivered in 2011 reg pack 1012803]
              ,prev_cpp_election_code    --1061321 [delivered in 2011 reg pack 1012803]
              ,prev_cpp_election_date    --1061321 [delivered in 2011 reg pack 1012803]
-			 ,rcv_pp_pension_ind        --1118754 def341775 
+			 ,rcv_pp_pension_ind        --1118754 def341775
   )
 
         values (@p_employee_id,
@@ -5779,8 +5775,8 @@ if @p_employer_taxing_ctry_code = 'CA'
              	/* R6.0M SSA 165213 new columns added to table */
              	0,
 	     	0,
-             	0,	
-             	/* R6.0M SSA 165213 End */	
+             	0,
+             	/* R6.0M SSA 165213 End */
 	     	0
              	,'1' /* @p_ppip_status_code = 1 for CANFED 566986 */
                 ,0   /* inc_tax_infirm_depn_amt         585743 */
@@ -5790,19 +5786,19 @@ if @p_employer_taxing_ctry_code = 'CA'
                 ,'12/31/2999'  --cpp_election_date      1061321 [delivered in 2011 reg pack 1012803]
                 ,'0'           --prev_cpp_election_code 1061321 [delivered in 2011 reg pack 1012803]
                 ,'12/31/2999'  --prev_cpp_election_date 1061321 [delivered in 2011 reg pack 1012803]
-				,'N'           --rcv_pp_pension_ind     1118754 def341775 
+				,'N'           --rcv_pp_pension_ind     1118754 def341775
              	)
 
-if @@error <> 0 
+if @@error <> 0
     Begin
         Select @p_rc       = 500014
         Select @p_ret_mess = 'Error on emp_can_tax_authority for FED'
 return
     End
 
-    if (rtrim(@p_tax_authority_id) IS NOT NULL AND rtrim(@p_tax_authority_id)!='')    
+    if (rtrim(@p_tax_authority_id) IS NOT NULL AND rtrim(@p_tax_authority_id)!='')
         Begin
-            if @p_tax_authority_id = 'QC' or @p_tax_authority_id = 'NT' or 
+            if @p_tax_authority_id = 'QC' or @p_tax_authority_id = 'NT' or
 			@p_tax_authority_id = 'NN'
                 Select @w_other_prov_tax_1_stat_code = '2'
             else
@@ -5871,8 +5867,8 @@ return
              /* R6.0M SSA 165213 new columns added to table */
              inc_tax_caregiver_amt,
 	     pit_disability_amt,
-             pit_transferred_amt,	
-             /* R6.0M SSA 165213 End */	   
+             pit_transferred_amt,
+             /* R6.0M SSA 165213 End */
              chgstamp
              ,ppip_status_code /* 566986 */
              ,inc_tax_infirm_depn_amt        /* 585743 */
@@ -5916,8 +5912,8 @@ return
              	/* R6.0M SSA 165213 new columns added to table */
              	0,
 	     	0,
-             	0,	
-             	/* R6.0M SSA 165213 End */	
+             	0,
+             	/* R6.0M SSA 165213 End */
              	0
              	,@p_ppip_status_code /* 566986 */
                 ,0   /* inc_tax_infirm_depn_amt         585743 */
@@ -5933,7 +5929,7 @@ return
         End
     End
 
-if @@error <> 0 
+if @@error <> 0
     Begin
         Select @p_rc       = 500015
         Select @p_ret_mess = 'Error on emp_can_tax_authority for Provincial'
@@ -5941,7 +5937,7 @@ return
     End
 
 
-if (rtrim(@p_autopay_pay_element_id) IS NOT NULL AND rtrim(@p_autopay_pay_element_id)!='')    and @p_autopay_rtn = 0 
+if (rtrim(@p_autopay_pay_element_id) IS NOT NULL AND rtrim(@p_autopay_pay_element_id)!='')    and @p_autopay_rtn = 0
    Begin
     insert into emp_pay_element
        (emp_id,
@@ -6001,7 +5997,7 @@ if (rtrim(@p_autopay_pay_element_id) IS NOT NULL AND rtrim(@p_autopay_pay_elemen
 	chgstamp,
 	first_roth_ctrb,                 /* r71m-578919 in 576240 */
         ira_sep_simple_ind,              /* r71m-581591 in 582025 */
-        taxable_amt_not_determined_ind)  /* r71m-581591 in 582025 */ 
+        taxable_amt_not_determined_ind)  /* r71m-581591 in 582025 */
 
        values (	@p_employee_id,
                	@p_employer_id,
@@ -6022,9 +6018,9 @@ if (rtrim(@p_autopay_pay_element_id) IS NOT NULL AND rtrim(@p_autopay_pay_elemen
 		'12/31/2999','12/31/2999',
     		'N','N',
 		' ',' ', 'N', ' ', ' ',' ',
-               	0, 
-                '12/31/2999',          /* r71m-578919 in 576240 */ 
-                'N','N')               /* r71m-581591 in 582025 */ 
+               	0,
+                '12/31/2999',          /* r71m-578919 in 576240 */
+                'N','N')               /* r71m-581591 in 582025 */
 
        Insert Into emp_pay_element_non_dtd
             (emp_id,
@@ -6034,8 +6030,8 @@ if (rtrim(@p_autopay_pay_element_id) IS NOT NULL AND rtrim(@p_autopay_pay_elemen
              recover_over_nbr_of_pay_pds,
              wh_status_code,
              calc_last_pay_pd_ind,
-             prenotification_check_date, 
-             prenotification_code, 
+             prenotification_check_date,
+             prenotification_code,
              chgstamp)
        Values(@p_employee_id,
               @p_employer_id,
@@ -6045,7 +6041,7 @@ if (rtrim(@p_autopay_pay_element_id) IS NOT NULL AND rtrim(@p_autopay_pay_elemen
 
     END
 
-if @@error <> 0 
+if @@error <> 0
     begin
         Select @p_rc       = 500013
         Select @p_ret_mess = 'Error on emp_pay_element'
@@ -6062,47 +6058,47 @@ Execute usp_ins_hemp_03 @p_employer_taxing_ctry_code,
                         @p_autopay_pay_element_id,
                         @p_cursor_rc    OUTPUT
 
-if @p_cursor_rc = -1 
+if @p_cursor_rc = -1
     Begin
         Select @p_rc       = 500016
         Select @p_ret_mess = 'Error on emp_pay_element'
         return
     End
 
-if exists (Select hpge.pay_element_id 
+if exists (Select hpge.pay_element_id
     From pay_element_ctrl_grp_entry hpge, pay_element hpay
     Where hpge.pay_element_ctrl_grp_id = @p_pay_element_ctrl_grp and
-          hpge.pay_element_id = hpay.pay_element_id and 
-          hpge.establish_on_hire_ind = 'Y' and 
-          hpay.start_date > @p_original_hire_date) 
-    Select @p_rc = 50433 
+          hpge.pay_element_id = hpay.pay_element_id and
+          hpge.establish_on_hire_ind = 'Y' and
+          hpay.start_date > @p_original_hire_date)
+    Select @p_rc = 50433
 
-if @p_employer_taxing_ctry_code = 'US' 
-    if @p_pensioner_indicator = 'N' 
-        if exists (Select hpge.pay_element_id 
+if @p_employer_taxing_ctry_code = 'US'
+    if @p_pensioner_indicator = 'N'
+        if exists (Select hpge.pay_element_id
             From pay_element_ctrl_grp_entry hpge, pay_element hpay
             Where hpge.pay_element_ctrl_grp_id = @p_pay_element_ctrl_grp and
-                  hpge.pay_element_id = hpay.pay_element_id and 
-                  hpge.establish_on_hire_ind = 'Y' and 
-                  hpay.pay_element_type_code = '1' and 
-                  hpay.earn_type_code = '6') 
+                  hpge.pay_element_id = hpay.pay_element_id and
+                  hpge.establish_on_hire_ind = 'Y' and
+                  hpay.pay_element_type_code = '1' and
+                  hpay.earn_type_code = '6')
             Select @p_rc       = 50435
 
-if @p_cursor_rc = 50436 
+if @p_cursor_rc = 50436
     Select @p_rc = @p_cursor_rc
 
- 
 
- 
+
+
 GO
-ALTER AUTHORIZATION ON [dbo].[usp_ins_hemp_02] TO  SCHEMA OWNER 
-GO
+ALTER AUTHORIZATION ON [dbo].[usp_ins_hemp_02] TO  SCHEMA OWNER
+GO;
 USE [DBShrpn]
 GO
 /****** Object:  StoredProcedure [dbo].[usp_ins_hemp_03]    Script Date: 4/1/2025 4:33:00 PM ******/
 SET ANSI_NULLS OFF
 GO
-SET QUOTED_IDENTIFIER OFF
+SET QUOTED_IDENTIFIER ON
 GO
 
 
@@ -6288,12 +6284,12 @@ While ( @@fetch_status = 0 )
         else
             Select @w_schedule_code = ''
 
-        /* Sol#524177 -  Reset Employee Pay Element Fields which Default From Policy Pay Element 
+        /* Sol#524177 -  Reset Employee Pay Element Fields which Default From Policy Pay Element
            Note: the following code is necessary to insure the Policy Pay Element Values are
                  defaulted to the Employee Pay Element                                       */
-        
+
         /* select @w_limit_amt = 0  Sol#524177  deleted with 557375 */
- 
+
         /*Insert data into emp_pay_element*/
          Insert Into emp_pay_element(
             emp_id,
@@ -6351,9 +6347,9 @@ While ( @@fetch_status = 0 )
             pension_distn_code_2,
             pre_1990_rpp_ctrb_type_cd,
             chgstamp,
-            first_roth_ctrb,                    /* r71m-578919 in 576240 */  
-            ira_sep_simple_ind,                 /* r71m-581591 in 582025 */ 
-            taxable_amt_not_determined_ind)     /* r71m-581591 in 582025 */ 
+            first_roth_ctrb,                    /* r71m-578919 in 576240 */
+            ira_sep_simple_ind,                 /* r71m-581591 in 582025 */
+            taxable_amt_not_determined_ind)     /* r71m-581591 in 582025 */
         Values(
             @p_employee_id,
             @p_employer_id,
@@ -6385,9 +6381,9 @@ While ( @@fetch_status = 0 )
             "12/31/2999",
             "N","N","","","N",
             "","","",
-            0, 
-            "12/31/2999",  /* r71m-578919 in 576240 */ 
-            "N","N")       /* r71m-581591 in 582025 */ 
+            0,
+            "12/31/2999",  /* r71m-578919 in 576240 */
+            "N","N")       /* r71m-581591 in 582025 */
 
         if @@error <> 0
 	    Begin
@@ -6468,25 +6464,25 @@ if @w_direct_deposit_ind = "Y"
     Select @p_rc = 50436
 else
     Select @p_rc = 1
- 
 
- 
+
+
 GO
-ALTER AUTHORIZATION ON [dbo].[usp_ins_hemp_03] TO  SCHEMA OWNER 
+ALTER AUTHORIZATION ON [dbo].[usp_ins_hemp_03] TO  SCHEMA OWNER
 GO
 USE [DBShrpn]
 GO
 /****** Object:  StoredProcedure [dbo].[usp_ins_hemp_04]    Script Date: 4/1/2025 4:33:00 PM ******/
 SET ANSI_NULLS OFF
 GO
-SET QUOTED_IDENTIFIER OFF
+SET QUOTED_IDENTIFIER ON
 GO
 
 
 
 
 CREATE procedure [dbo].[usp_ins_hemp_04]
-(       
+(
 @p_tax_authority_id             char(10),
 @p_tax_authority_2              char(10),
 @p_tax_authority_3              char(10),
@@ -6519,15 +6515,15 @@ as
 /* DOS.Name    :  hpnpii24.sp       */
 /* -------------------------------- */
 declare @ret int
---exec @ret = sp_dbs_authenticate if @ret != 0 return 
-if (rtrim(@p_tax_authority_id) IS NOT NULL AND rtrim(@p_tax_authority_id)!="")    
+--exec @ret = sp_dbs_authenticate if @ret != 0 return
+if (rtrim(@p_tax_authority_id) IS NOT NULL AND rtrim(@p_tax_authority_id)!="")
     Begin
-    if @p_tax_auth_type_code = "2" 
+    if @p_tax_auth_type_code = "2"
 Begin
-if (rtrim(@p_tax_authority_2) IS NULL OR rtrim(@p_tax_authority_2)="")   
-and (rtrim(@p_tax_authority_3) IS NULL OR rtrim(@p_tax_authority_3)="")   
-and (rtrim(@p_tax_authority_4) IS NULL OR rtrim(@p_tax_authority_4)="")   
-and (rtrim(@p_tax_authority_5) IS NULL OR rtrim(@p_tax_authority_5)="")   
+if (rtrim(@p_tax_authority_2) IS NULL OR rtrim(@p_tax_authority_2)="")
+and (rtrim(@p_tax_authority_3) IS NULL OR rtrim(@p_tax_authority_3)="")
+and (rtrim(@p_tax_authority_4) IS NULL OR rtrim(@p_tax_authority_4)="")
+and (rtrim(@p_tax_authority_5) IS NULL OR rtrim(@p_tax_authority_5)="")
 and @p_work_resident_status_code <> "2"
 Begin
 Select @w_complete_ind = "Y",
@@ -6535,7 +6531,7 @@ Select @w_complete_ind = "Y",
 @w_time_pct_1 = 100
         End
 else
-if @p_tax_auth_type_code_2 <> "2" 
+if @p_tax_auth_type_code_2 <> "2"
                 and @p_tax_auth_type_code_2 <> "4"
 and @p_tax_auth_type_code_3 <> "2"
 and @p_tax_auth_type_code_3 <> "4"
@@ -6549,17 +6545,17 @@ Select @w_complete_ind = "Y",
 @w_time_pct_1 = 100
 End
         End
-    else if @p_tax_auth_type_code = "4" 
+    else if @p_tax_auth_type_code = "4"
         Begin
-if (rtrim(@p_tax_authority_2) IS NULL OR rtrim(@p_tax_authority_2)="")   
-and (rtrim(@p_tax_authority_3) IS NULL OR rtrim(@p_tax_authority_3)="")   
-and (rtrim(@p_tax_authority_4) IS NULL OR rtrim(@p_tax_authority_4)="")   
-and (rtrim(@p_tax_authority_5) IS NULL OR rtrim(@p_tax_authority_5)="")   
+if (rtrim(@p_tax_authority_2) IS NULL OR rtrim(@p_tax_authority_2)="")
+and (rtrim(@p_tax_authority_3) IS NULL OR rtrim(@p_tax_authority_3)="")
+and (rtrim(@p_tax_authority_4) IS NULL OR rtrim(@p_tax_authority_4)="")
+and (rtrim(@p_tax_authority_5) IS NULL OR rtrim(@p_tax_authority_5)="")
 Begin
 Select @w_complete_ind = "Y",@w_time_pct_1 = 100, @w_sui_state_1_ind = "Y"
 End
 else
-if @p_tax_auth_type_code_2 <> "2" 
+if @p_tax_auth_type_code_2 <> "2"
                 and @p_tax_auth_type_code_2 <> "4"
 and @p_tax_auth_type_code_3 <> "2"
 and @p_tax_auth_type_code_3 <> "4"
@@ -6575,14 +6571,14 @@ End
         select @w_time_pct_1 = 100
 End
 
-if (rtrim(@p_tax_authority_2) IS NOT NULL AND rtrim(@p_tax_authority_2)!="")    
+if (rtrim(@p_tax_authority_2) IS NOT NULL AND rtrim(@p_tax_authority_2)!="")
 begin
-if @p_tax_auth_type_code_2 = "2" 
+if @p_tax_auth_type_code_2 = "2"
 Begin
-if (rtrim(@p_tax_authority_id) IS NULL OR rtrim(@p_tax_authority_id)="")   
-and (rtrim(@p_tax_authority_3) IS NULL OR rtrim(@p_tax_authority_3)="")   
-and (rtrim(@p_tax_authority_4) IS NULL OR rtrim(@p_tax_authority_4)="")   
-and (rtrim(@p_tax_authority_5) IS NULL OR rtrim(@p_tax_authority_5)="")   
+if (rtrim(@p_tax_authority_id) IS NULL OR rtrim(@p_tax_authority_id)="")
+and (rtrim(@p_tax_authority_3) IS NULL OR rtrim(@p_tax_authority_3)="")
+and (rtrim(@p_tax_authority_4) IS NULL OR rtrim(@p_tax_authority_4)="")
+and (rtrim(@p_tax_authority_5) IS NULL OR rtrim(@p_tax_authority_5)="")
 and @p_work_resident_status_code_2 <> "2"
 Begin
 Select @w_complete_ind = "Y",
@@ -6590,7 +6586,7 @@ Select @w_complete_ind = "Y",
 @w_time_pct_2 = 100
 End
 else
-if @p_tax_auth_type_code <> "2" 
+if @p_tax_auth_type_code <> "2"
 and @p_tax_auth_type_code   <> "4"
 and @p_tax_auth_type_code_3 <> "2"
 and @p_tax_auth_type_code_3 <> "4"
@@ -6604,17 +6600,17 @@ Select @w_complete_ind = "Y",
 @w_time_pct_2 = 100
 End
 End
-    else if @p_tax_auth_type_code_2 = "4 " 
+    else if @p_tax_auth_type_code_2 = "4 "
 Begin
-if (rtrim(@p_tax_authority_id) IS NULL OR rtrim(@p_tax_authority_id)="")   
-and (rtrim(@p_tax_authority_3) IS NULL OR rtrim(@p_tax_authority_3)="")   
-and (rtrim(@p_tax_authority_4) IS NULL OR rtrim(@p_tax_authority_4)="")   
-and (rtrim(@p_tax_authority_5) IS NULL OR rtrim(@p_tax_authority_5)="")   
+if (rtrim(@p_tax_authority_id) IS NULL OR rtrim(@p_tax_authority_id)="")
+and (rtrim(@p_tax_authority_3) IS NULL OR rtrim(@p_tax_authority_3)="")
+and (rtrim(@p_tax_authority_4) IS NULL OR rtrim(@p_tax_authority_4)="")
+and (rtrim(@p_tax_authority_5) IS NULL OR rtrim(@p_tax_authority_5)="")
 Begin
 Select @w_complete_ind = "Y",@w_time_pct_2 = 100, @w_sui_state_2_ind = "Y"
 End
 else
-if @p_tax_auth_type_code <> "2" 
+if @p_tax_auth_type_code <> "2"
 and @p_tax_auth_type_code   <> "4"
 and @p_tax_auth_type_code_3 <> "2"
 and @p_tax_auth_type_code_3 <> "4"
@@ -6630,14 +6626,14 @@ End
         select @w_time_pct_2 = 100
 End
 
-if (rtrim(@p_tax_authority_3) IS NOT NULL AND rtrim(@p_tax_authority_3)!="")    
+if (rtrim(@p_tax_authority_3) IS NOT NULL AND rtrim(@p_tax_authority_3)!="")
 begin
-if @p_tax_auth_type_code_3 = "2" 
+if @p_tax_auth_type_code_3 = "2"
 Begin
-if (rtrim(@p_tax_authority_id) IS NULL OR rtrim(@p_tax_authority_id)="")   
-and (rtrim(@p_tax_authority_2) IS NULL OR rtrim(@p_tax_authority_2)="")   
-and (rtrim(@p_tax_authority_4) IS NULL OR rtrim(@p_tax_authority_4)="")   
-and (rtrim(@p_tax_authority_5) IS NULL OR rtrim(@p_tax_authority_5)="")   
+if (rtrim(@p_tax_authority_id) IS NULL OR rtrim(@p_tax_authority_id)="")
+and (rtrim(@p_tax_authority_2) IS NULL OR rtrim(@p_tax_authority_2)="")
+and (rtrim(@p_tax_authority_4) IS NULL OR rtrim(@p_tax_authority_4)="")
+and (rtrim(@p_tax_authority_5) IS NULL OR rtrim(@p_tax_authority_5)="")
 and @p_work_resident_status_code_3 <> "2"
 Begin
 Select @w_complete_ind = "Y",
@@ -6645,7 +6641,7 @@ Select @w_complete_ind = "Y",
 @w_time_pct_3 = 100
 End
 else
-if @p_tax_auth_type_code <> "2" 
+if @p_tax_auth_type_code <> "2"
 and @p_tax_auth_type_code   <> "4"
 and @p_tax_auth_type_code_2 <> "2"
 and @p_tax_auth_type_code_2 <> "4"
@@ -6659,17 +6655,17 @@ Select @w_complete_ind = "Y",
 @w_time_pct_3 = 100
 End
 End
-    else if @p_tax_auth_type_code_3 = "4" 
+    else if @p_tax_auth_type_code_3 = "4"
 Begin
-if (rtrim(@p_tax_authority_id) IS NULL OR rtrim(@p_tax_authority_id)="")   
-and (rtrim(@p_tax_authority_2) IS NULL OR rtrim(@p_tax_authority_2)="")   
-and (rtrim(@p_tax_authority_4) IS NULL OR rtrim(@p_tax_authority_4)="")   
-and (rtrim(@p_tax_authority_5) IS NULL OR rtrim(@p_tax_authority_5)="")   
+if (rtrim(@p_tax_authority_id) IS NULL OR rtrim(@p_tax_authority_id)="")
+and (rtrim(@p_tax_authority_2) IS NULL OR rtrim(@p_tax_authority_2)="")
+and (rtrim(@p_tax_authority_4) IS NULL OR rtrim(@p_tax_authority_4)="")
+and (rtrim(@p_tax_authority_5) IS NULL OR rtrim(@p_tax_authority_5)="")
 Begin
 Select @w_complete_ind = "Y",@w_time_pct_3 = 100, @w_sui_state_3_ind = "Y"
 End
 else
-if @p_tax_auth_type_code <> "2" 
+if @p_tax_auth_type_code <> "2"
 and @p_tax_auth_type_code   <> "4"
 and @p_tax_auth_type_code_2 <> "2"
 and @p_tax_auth_type_code_2 <> "4"
@@ -6685,14 +6681,14 @@ End
         select @w_time_pct_3 = 100
 End
 
-if (rtrim(@p_tax_authority_4) IS NOT NULL AND rtrim(@p_tax_authority_4)!="")    
+if (rtrim(@p_tax_authority_4) IS NOT NULL AND rtrim(@p_tax_authority_4)!="")
 begin
-if @p_tax_auth_type_code_4 = "2" 
+if @p_tax_auth_type_code_4 = "2"
 Begin
-if (rtrim(@p_tax_authority_id) IS NULL OR rtrim(@p_tax_authority_id)="")   
-and (rtrim(@p_tax_authority_2) IS NULL OR rtrim(@p_tax_authority_2)="")   
-and (rtrim(@p_tax_authority_3) IS NULL OR rtrim(@p_tax_authority_3)="")   
-and (rtrim(@p_tax_authority_5) IS NULL OR rtrim(@p_tax_authority_5)="")   
+if (rtrim(@p_tax_authority_id) IS NULL OR rtrim(@p_tax_authority_id)="")
+and (rtrim(@p_tax_authority_2) IS NULL OR rtrim(@p_tax_authority_2)="")
+and (rtrim(@p_tax_authority_3) IS NULL OR rtrim(@p_tax_authority_3)="")
+and (rtrim(@p_tax_authority_5) IS NULL OR rtrim(@p_tax_authority_5)="")
 and @p_work_resident_status_code_4 <> "2"
 Begin
 Select @w_complete_ind = "Y",
@@ -6700,7 +6696,7 @@ Select @w_complete_ind = "Y",
 @w_time_pct_4 = 100
 End
 else
-if @p_tax_auth_type_code <> "2" 
+if @p_tax_auth_type_code <> "2"
                 and @p_tax_auth_type_code   <> "4"
 and @p_tax_auth_type_code_2 <> "2"
 and @p_tax_auth_type_code_2 <> "4"
@@ -6714,17 +6710,17 @@ Select @w_complete_ind = "Y",
 @w_time_pct_4 = 100
 End
 End
-    else if @p_tax_auth_type_code_4 = "4" 
+    else if @p_tax_auth_type_code_4 = "4"
 Begin
-if (rtrim(@p_tax_authority_id) IS NULL OR rtrim(@p_tax_authority_id)="")   
-and (rtrim(@p_tax_authority_2) IS NULL OR rtrim(@p_tax_authority_2)="")   
-and (rtrim(@p_tax_authority_3) IS NULL OR rtrim(@p_tax_authority_3)="")   
-and (rtrim(@p_tax_authority_5) IS NULL OR rtrim(@p_tax_authority_5)="")   
+if (rtrim(@p_tax_authority_id) IS NULL OR rtrim(@p_tax_authority_id)="")
+and (rtrim(@p_tax_authority_2) IS NULL OR rtrim(@p_tax_authority_2)="")
+and (rtrim(@p_tax_authority_3) IS NULL OR rtrim(@p_tax_authority_3)="")
+and (rtrim(@p_tax_authority_5) IS NULL OR rtrim(@p_tax_authority_5)="")
 Begin
 Select @w_complete_ind = "Y",@w_time_pct_4 = 100, @w_sui_state_4_ind = "Y"
 End
 else
-if @p_tax_auth_type_code <> "2" 
+if @p_tax_auth_type_code <> "2"
                 and @p_tax_auth_type_code   <> "4"
 and @p_tax_auth_type_code_2 <> "2"
 and @p_tax_auth_type_code_2 <> "4"
@@ -6740,14 +6736,14 @@ End
         select @w_time_pct_4 = 100
 End
 
-if (rtrim(@p_tax_authority_5) IS NOT NULL AND rtrim(@p_tax_authority_5)!="")    
+if (rtrim(@p_tax_authority_5) IS NOT NULL AND rtrim(@p_tax_authority_5)!="")
 begin
-if @p_tax_auth_type_code_5 = "2" 
+if @p_tax_auth_type_code_5 = "2"
 Begin
-if (rtrim(@p_tax_authority_id) IS NULL OR rtrim(@p_tax_authority_id)="")   
-and (rtrim(@p_tax_authority_2) IS NULL OR rtrim(@p_tax_authority_2)="")   
-and (rtrim(@p_tax_authority_3) IS NULL OR rtrim(@p_tax_authority_3)="")   
-and (rtrim(@p_tax_authority_4) IS NULL OR rtrim(@p_tax_authority_4)="")   
+if (rtrim(@p_tax_authority_id) IS NULL OR rtrim(@p_tax_authority_id)="")
+and (rtrim(@p_tax_authority_2) IS NULL OR rtrim(@p_tax_authority_2)="")
+and (rtrim(@p_tax_authority_3) IS NULL OR rtrim(@p_tax_authority_3)="")
+and (rtrim(@p_tax_authority_4) IS NULL OR rtrim(@p_tax_authority_4)="")
 and @p_work_resident_status_code_5 <> "2"
 Begin
 Select @w_complete_ind = "Y",
@@ -6755,7 +6751,7 @@ Select @w_complete_ind = "Y",
 @w_time_pct_5 = 100
 End
 else
-if @p_tax_auth_type_code <> "2" 
+if @p_tax_auth_type_code <> "2"
 and @p_tax_auth_type_code   <> "4"
 and @p_tax_auth_type_code_2 <> "2"
 and @p_tax_auth_type_code_2 <> "4"
@@ -6769,18 +6765,18 @@ Select @w_complete_ind = "Y",
 @w_time_pct_5 = 100
 End
 End
-    else if @p_tax_auth_type_code_5 = "4" 
+    else if @p_tax_auth_type_code_5 = "4"
 Begin
-if (rtrim(@p_tax_authority_id) IS NULL OR rtrim(@p_tax_authority_id)="")   
-and (rtrim(@p_tax_authority_2) IS NULL OR rtrim(@p_tax_authority_2)="")   
-and (rtrim(@p_tax_authority_3) IS NULL OR rtrim(@p_tax_authority_3)="")   
-and (rtrim(@p_tax_authority_4) IS NULL OR rtrim(@p_tax_authority_4)="")   
+if (rtrim(@p_tax_authority_id) IS NULL OR rtrim(@p_tax_authority_id)="")
+and (rtrim(@p_tax_authority_2) IS NULL OR rtrim(@p_tax_authority_2)="")
+and (rtrim(@p_tax_authority_3) IS NULL OR rtrim(@p_tax_authority_3)="")
+and (rtrim(@p_tax_authority_4) IS NULL OR rtrim(@p_tax_authority_4)="")
 and @p_work_resident_status_code <> "2"
 Begin
 Select @w_complete_ind = "Y",@w_time_pct_5 = 100, @w_sui_state_5_ind = "Y"
 End
 else
-if @p_tax_auth_type_code <> "2" 
+if @p_tax_auth_type_code <> "2"
 and @p_tax_auth_type_code   <> "4"
 and @p_tax_auth_type_code_2 <> "2"
 and @p_tax_auth_type_code_2 <> "4"
@@ -6795,21 +6791,19 @@ End
     else
         select @w_time_pct_5 = 100
 End
- 
 
- 
+
+
 GO
-ALTER AUTHORIZATION ON [dbo].[usp_ins_hemp_04] TO  SCHEMA OWNER 
-GO
+ALTER AUTHORIZATION ON [dbo].[usp_ins_hemp_04] TO  SCHEMA OWNER
+GO;
 USE [DBShrpn]
 GO
 /****** Object:  StoredProcedure [dbo].[usp_ins_hepy_audit]    Script Date: 4/1/2025 4:33:00 PM ******/
 SET ANSI_NULLS OFF
 GO
-SET QUOTED_IDENTIFIER OFF
+SET QUOTED_IDENTIFIER ON
 GO
-
-
 
 
 CREATE procedure [dbo].[usp_ins_hepy_audit] (
@@ -6945,7 +6939,7 @@ begin
        @p_activity_action_code = 'POPTUNCDEL'  or
        @p_activity_action_code = 'PTCPLOANDL'  or
        @p_activity_action_code = 'PTCPCLAIMD'  or
-       @p_activity_action_code = 'POPTDELETE' 
+       @p_activity_action_code = 'POPTDELETE'
          begin
             insert into emp_pay_element_aud (ACTION_CODE, ACTION_USER,
                 ACTION_DATETIME, B_emp_id, B_empl_id, B_pay_element_id,
@@ -7012,10 +7006,10 @@ begin
 
     /* R7.0M-ALS#567582: Begin */
     /* Put this here because pay_element_pay_pd_sched_code   */
-    /* isn't passed and more than one row could be affected. */             
+    /* isn't passed and more than one row could be affected. */
     if @p_activity_action_code = 'EPHDELPMT'
          select @w_pay_elmt_pay_pd_sched_code = "11"
-    else 
+    else
          select @w_pay_elmt_pay_pd_sched_code = after.pay_element_pay_pd_sched_code
            from emp_pay_element after
           where after.emp_id          = @p_a_emp_id
@@ -7030,7 +7024,7 @@ begin
        @p_activity_action_code = 'REACTIVATE'  or
        @p_activity_action_code = 'CHGEMPPYNE'  or
        @p_activity_action_code = 'POPTCHGNE'   or
-       @p_activity_action_code = 'EPHDELPMT'      /* R7.0M-ALS#567582 */  
+       @p_activity_action_code = 'EPHDELPMT'      /* R7.0M-ALS#567582 */
         begin
             insert into emp_pay_element_aud
             select @p_activity_action_code, @p_user_id, @p_action_date,
@@ -7104,7 +7098,7 @@ begin
     /*  Insert where the before and after are essentially the same  */
     if @p_activity_action_code = 'PTCPUDPENX'  or  /* R6.5.02MCEXP-ALS#523706 */
        @p_activity_action_code = 'CHGVEREFF'   or
-       @p_activity_action_code = 'POPTCHGVER'  or 
+       @p_activity_action_code = 'POPTCHGVER'  or
        @p_activity_action_code = 'CHGSTARTDT'  or
        @p_activity_action_code = 'REVHIRE'     or
        @p_activity_action_code = 'REVREHIRE'   or
@@ -7117,7 +7111,7 @@ begin
        @p_activity_action_code = 'DELSTOPDT'   or  /* R6.5.03M-ALS#28859: missing */
        @p_activity_action_code = 'CHGSTOPDT'   or
        @p_activity_action_code = 'PTCPDELTRM'  or  /* R6.5.02MC-ALS#521145 */
-       @p_activity_action_code = 'ERXFERPESP'  
+       @p_activity_action_code = 'ERXFERPESP'
          begin
             insert into emp_pay_element_aud
             select @p_activity_action_code, @p_user_id, @p_action_date,
@@ -7184,18 +7178,18 @@ begin
            return
          end
 end
- 
 
- 
+
+
 GO
-ALTER AUTHORIZATION ON [dbo].[usp_ins_hepy_audit] TO  SCHEMA OWNER 
-GO
+ALTER AUTHORIZATION ON [dbo].[usp_ins_hepy_audit] TO  SCHEMA OWNER
+GO;
 USE [DBShrpn]
 GO
 /****** Object:  StoredProcedure [dbo].[usp_ins_hepy_insert]    Script Date: 4/1/2025 4:33:00 PM ******/
 SET ANSI_NULLS OFF
 GO
-SET QUOTED_IDENTIFIER OFF
+SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE procedure [dbo].[usp_ins_hepy_insert]
@@ -7683,7 +7677,7 @@ setandreturn:
 
 GO
 ALTER AUTHORIZATION ON [dbo].[usp_ins_hepy_insert] TO  SCHEMA OWNER
-GO
+GO;
 USE DBShrpn
 go
 IF OBJECT_ID(N'dbo.usp_ins_hpcg_hepy') IS NOT NULL
@@ -8337,7 +8331,7 @@ IF OBJECT_ID(N'dbo.usp_ins_hpcg_hepy', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_ins_hpcg_hepy >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_ins_hpcg_hepy >>>'
-GO
+GO;
 USE DBShrpn
 GO
 
@@ -9228,7 +9222,8 @@ IF OBJECT_ID(N'dbo.usp_ins_labor_group', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_ins_labor_group >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_ins_labor_group >>>'
-GOUSE DBShrpn
+GO;
+USE DBShrpn
 GO
 
 SET ANSI_NULLS ON
@@ -9911,7 +9906,8 @@ IF OBJECT_ID(N'dbo.usp_ins_name_change', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_ins_name_change >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_ins_name_change >>>'
-GOUSE DBShrpn
+GO;
+USE DBShrpn
 GO
 
 SET ANSI_NULLS ON
@@ -11677,7 +11673,7 @@ IF OBJECT_ID(N'dbo.usp_ins_new_hire', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_ins_new_hire >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_ins_new_hire >>>'
-GO
+GO;
 USE DBShrpn
 GO
 
@@ -13009,7 +13005,8 @@ IF OBJECT_ID(N'dbo.usp_ins_pay_element', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_ins_pay_element >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_ins_pay_element >>>'
-GOUSE DBShrpn
+GO;
+USE DBShrpn
 GO
 
 SET ANSI_NULLS ON
@@ -13859,7 +13856,8 @@ IF OBJECT_ID(N'dbo.usp_ins_pay_group', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_ins_pay_group >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_ins_pay_group >>>'
-GOUSE DBShrpn
+GO;
+USE DBShrpn
 GO
 
 SET ANSI_NULLS ON
@@ -15206,7 +15204,8 @@ IF OBJECT_ID(N'dbo.usp_ins_position_title', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_ins_position_title >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_ins_position_title >>>'
-GOUSE DBShrpn
+GO;
+USE DBShrpn
 GO
 
 SET ANSI_NULLS ON
@@ -16717,7 +16716,8 @@ IF OBJECT_ID(N'dbo.usp_ins_salary_change', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_ins_salary_change >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_ins_salary_change >>>'
-GOUSE DBShrpn
+GO;
+USE DBShrpn
 GO
 
 SET ANSI_NULLS OFF
@@ -18534,7 +18534,8 @@ IF OBJECT_ID(N'dbo.usp_ins_status_change', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_ins_status_change >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_ins_status_change >>>'
-GOUSE DBShrpn
+GO;
+USE DBShrpn
 GO
 
 SET ANSI_NULLS ON
@@ -19974,7 +19975,7 @@ IF OBJECT_ID(N'dbo.usp_perform_transfer', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_perform_transfer >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_perform_transfer >>>'
-GO
+GO;
 USE DBShrpn;
 GO
 
@@ -20886,7 +20887,7 @@ IF OBJECT_ID(N'dbo.usp_sel_employee_events', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_sel_employee_events >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_sel_employee_events >>>'
-GO
+GO;
 USE DBShrpn
 GO
 
@@ -21382,7 +21383,8 @@ IF OBJECT_ID(N'dbo.usp_upd_emp_employment', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_upd_emp_employment >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_upd_emp_employment >>>'
-GOUSE [DBShrpn]
+GO;
+USE [DBShrpn]
 GO
 /****** Object:  StoredProcedure [dbo].[usp_upd_hmpl_chgid]    Script Date: 4/1/2025 4:33:00 PM ******/
 SET ANSI_NULLS OFF
@@ -21408,7 +21410,7 @@ declare @ret int,
 
 declare	@w_new_chgstamp					tinyint
 
-select @w_new_chgstamp	= 0			
+select @w_new_chgstamp	= 0
 
 	select @W_ACTION_USER = suser_sname()
 
@@ -21481,7 +21483,7 @@ if exists( SELECT *  FROM hr_audit_ctrl tablockx with (holdlock))
 	update participant
 		set emp_id = @p_new_emp_id
 		  where emp_id = @p_old_emp_id
-	
+
 	if @p_ptcp_id_assign_meth_code = "2"
 		begin
 			update participant
@@ -21493,7 +21495,7 @@ if exists( SELECT *  FROM hr_audit_ctrl tablockx with (holdlock))
 				set participant_id = @p_new_emp_id,
 					chgstamp = chgstamp + 1
 				where participant_id = @p_old_emp_id
-	
+
 			update ben_plan_ptcp_comnt
 				set participant_id = @p_new_emp_id,
 					chgstamp = chgstamp + 1
@@ -21542,7 +21544,7 @@ if exists( SELECT *  FROM hr_audit_ctrl tablockx with (holdlock))
 			update ben_plan_ptcp_claim_comnt
 				set participant_id = @p_new_emp_id,
 					chgstamp = chgstamp + 1
-				where participant_id = @p_old_emp_id	
+				where participant_id = @p_old_emp_id
 
 			update ben_plan_ptcp_loan
 				set participant_id = @p_new_emp_id,
@@ -21598,12 +21600,12 @@ Commit transaction
 /* Set up the work employee status audit table                                          */
 /* ============================================================*/
 
- 
 
- 
+
+
 GO
-ALTER AUTHORIZATION ON [dbo].[usp_upd_hmpl_chgid] TO  SCHEMA OWNER 
-GO
+ALTER AUTHORIZATION ON [dbo].[usp_upd_hmpl_chgid] TO  SCHEMA OWNER
+GO;
 USE DBShrpn
 go
 IF OBJECT_ID(N'dbo.usp_upd_hmpl_inactivate') IS NOT NULL
@@ -21617,7 +21619,7 @@ END
 go
 SET ANSI_NULLS ON
 go
-SET QUOTED_IDENTIFIER OFF
+SET QUOTED_IDENTIFIER ON
 GO
 
 
@@ -21818,7 +21820,7 @@ IF OBJECT_ID(N'dbo.usp_upd_hmpl_inactivate', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_upd_hmpl_inactivate >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_upd_hmpl_inactivate >>>'
-GO
+GO;
 USE DBShrpn
 go
 IF OBJECT_ID(N'dbo.usp_upd_hmpl_reactivate') IS NOT NULL
@@ -21832,7 +21834,7 @@ END
 go
 SET ANSI_NULLS ON
 go
-SET QUOTED_IDENTIFIER OFF
+SET QUOTED_IDENTIFIER ON
 GO
 
 
@@ -22027,7 +22029,7 @@ IF OBJECT_ID(N'dbo.usp_upd_hmpl_reactivate', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_upd_hmpl_reactivate >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_upd_hmpl_reactivate >>>'
-GO
+GO;
 USE DBShrpn
 go
 IF OBJECT_ID(N'dbo.usp_upd_hmpl_rehire') IS NOT NULL
@@ -22041,7 +22043,7 @@ END
 go
 SET ANSI_NULLS ON
 go
-SET QUOTED_IDENTIFIER OFF
+SET QUOTED_IDENTIFIER ON
 GO
 
 
@@ -23169,7 +23171,7 @@ IF OBJECT_ID(N'dbo.usp_upd_hmpl_rehire', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_upd_hmpl_rehire >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_upd_hmpl_rehire >>>'
-GO
+GO;
 USE DBShrpn
 go
 IF OBJECT_ID(N'dbo.usp_upd_hmpl_terminate') IS NOT NULL
@@ -23183,7 +23185,7 @@ END
 go
 SET ANSI_NULLS ON
 go
-SET QUOTED_IDENTIFIER OFF
+SET QUOTED_IDENTIFIER ON
 GO
 
 
@@ -24504,7 +24506,7 @@ IF OBJECT_ID(N'dbo.usp_upd_hmpl_terminate', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_upd_hmpl_terminate >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_upd_hmpl_terminate >>>'
-GO
+GO;
 USE DBShrpn
 go
 IF OBJECT_ID(N'dbo.usp_upd_hrpn_02_trn') IS NOT NULL
@@ -24518,7 +24520,7 @@ END
 go
 SET ANSI_NULLS ON
 GO
-SET QUOTED_IDENTIFIER OFF
+SET QUOTED_IDENTIFIER ON
 GO
 
 /*************************************************************************************
@@ -25672,13 +25674,13 @@ IF OBJECT_ID(N'dbo.usp_upd_hrpn_02_trn', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_upd_hrpn_02_trn >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_upd_hrpn_02_trn >>>'
-GO
+GO;
 USE [DBShrpn]
 GO
 /****** Object:  StoredProcedure [dbo].[usp_val_hepy_audit]    Script Date: 4/1/2025 4:33:00 PM ******/
 SET ANSI_NULLS OFF
 GO
-SET QUOTED_IDENTIFIER OFF
+SET QUOTED_IDENTIFIER ON
 GO
 
 
@@ -25740,12 +25742,12 @@ begin
     else
         return 2
 end
- 
 
- 
+
+
 GO
-ALTER AUTHORIZATION ON [dbo].[usp_val_hepy_audit] TO  SCHEMA OWNER 
-GO
+ALTER AUTHORIZATION ON [dbo].[usp_val_hepy_audit] TO  SCHEMA OWNER
+GO;
 USE DBShrpn
 GO
 
@@ -26211,4 +26213,5 @@ IF OBJECT_ID(N'dbo.usp_verification_rpt_csv', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_verification_rpt_csv >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_verification_rpt_csv >>>'
-GO
+GO;
+

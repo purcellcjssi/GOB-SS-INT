@@ -3,7 +3,7 @@ GO
 /****** Object:  StoredProcedure [dbo].[usp_ins_hemp_03]    Script Date: 4/1/2025 4:33:00 PM ******/
 SET ANSI_NULLS OFF
 GO
-SET QUOTED_IDENTIFIER OFF
+SET QUOTED_IDENTIFIER ON
 GO
 
 
@@ -189,12 +189,12 @@ While ( @@fetch_status = 0 )
         else
             Select @w_schedule_code = ''
 
-        /* Sol#524177 -  Reset Employee Pay Element Fields which Default From Policy Pay Element 
+        /* Sol#524177 -  Reset Employee Pay Element Fields which Default From Policy Pay Element
            Note: the following code is necessary to insure the Policy Pay Element Values are
                  defaulted to the Employee Pay Element                                       */
-        
+
         /* select @w_limit_amt = 0  Sol#524177  deleted with 557375 */
- 
+
         /*Insert data into emp_pay_element*/
          Insert Into emp_pay_element(
             emp_id,
@@ -252,9 +252,9 @@ While ( @@fetch_status = 0 )
             pension_distn_code_2,
             pre_1990_rpp_ctrb_type_cd,
             chgstamp,
-            first_roth_ctrb,                    /* r71m-578919 in 576240 */  
-            ira_sep_simple_ind,                 /* r71m-581591 in 582025 */ 
-            taxable_amt_not_determined_ind)     /* r71m-581591 in 582025 */ 
+            first_roth_ctrb,                    /* r71m-578919 in 576240 */
+            ira_sep_simple_ind,                 /* r71m-581591 in 582025 */
+            taxable_amt_not_determined_ind)     /* r71m-581591 in 582025 */
         Values(
             @p_employee_id,
             @p_employer_id,
@@ -286,9 +286,9 @@ While ( @@fetch_status = 0 )
             "12/31/2999",
             "N","N","","","N",
             "","","",
-            0, 
-            "12/31/2999",  /* r71m-578919 in 576240 */ 
-            "N","N")       /* r71m-581591 in 582025 */ 
+            0,
+            "12/31/2999",  /* r71m-578919 in 576240 */
+            "N","N")       /* r71m-581591 in 582025 */
 
         if @@error <> 0
 	    Begin
@@ -369,9 +369,9 @@ if @w_direct_deposit_ind = "Y"
     Select @p_rc = 50436
 else
     Select @p_rc = 1
- 
 
- 
+
+
 GO
-ALTER AUTHORIZATION ON [dbo].[usp_ins_hemp_03] TO  SCHEMA OWNER 
+ALTER AUTHORIZATION ON [dbo].[usp_ins_hemp_03] TO  SCHEMA OWNER
 GO

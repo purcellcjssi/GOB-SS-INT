@@ -909,4 +909,4 @@ IF OBJECT_ID(N'dbo.usp_sel_employee_events', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_sel_employee_events >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_sel_employee_events >>>'
-GO
+GO;

@@ -71,4 +71,4 @@ IF OBJECT_ID('dbo.ufn_ret_ganymede_to_hcm_emp_id') IS NOT NULL
     PRINT '<<< CREATED FUNCTION dbo.ufn_ret_ganymede_to_hcm_emp_id >>>'
 ELSE
     PRINT '<<< FAILED CREATING FUNCTION dbo.ufn_ret_ganymede_to_hcm_emp_id >>>'
-GO
+GO;

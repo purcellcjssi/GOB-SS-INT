@@ -142,7 +142,7 @@ IF OBJECT_ID('dbo.uvu_emp_assignment_most_rec') IS NOT NULL
     PRINT '<<< CREATED VIEW dbo.uvu_emp_assignment_most_rec >>>'
 ELSE
     PRINT '<<< FAILED CREATING VIEW dbo.uvu_emp_assignment_most_rec >>>'
-GO
+GO;
 USE DBShrpn
 GO
 
@@ -265,7 +265,7 @@ IF OBJECT_ID('dbo.uvu_emp_employment_most_rec') IS NOT NULL
     PRINT '<<< CREATED VIEW dbo.uvu_emp_employment_most_rec >>>'
 ELSE
     PRINT '<<< FAILED CREATING VIEW dbo.uvu_emp_employment_most_rec >>>'
-GO
+GO;
 USE DBShrpn
 GO
 
@@ -332,5 +332,5 @@ IF OBJECT_ID('dbo.uvu_emp_status_most_rec') IS NOT NULL
     PRINT '<<< CREATED VIEW dbo.uvu_emp_status_most_rec >>>'
 ELSE
     PRINT '<<< FAILED CREATING VIEW dbo.uvu_emp_status_most_rec >>>'
-GO
+GO;
 

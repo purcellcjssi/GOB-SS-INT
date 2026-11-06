@@ -11,7 +11,7 @@ END
 go
 SET ANSI_NULLS ON
 go
-SET QUOTED_IDENTIFIER OFF
+SET QUOTED_IDENTIFIER ON
 GO
 
 
@@ -1139,4 +1139,4 @@ IF OBJECT_ID(N'dbo.usp_upd_hmpl_rehire', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_upd_hmpl_rehire >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_upd_hmpl_rehire >>>'
-GO
+GO;

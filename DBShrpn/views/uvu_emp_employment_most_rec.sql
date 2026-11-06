@@ -120,4 +120,4 @@ IF OBJECT_ID('dbo.uvu_emp_employment_most_rec') IS NOT NULL
     PRINT '<<< CREATED VIEW dbo.uvu_emp_employment_most_rec >>>'
 ELSE
     PRINT '<<< FAILED CREATING VIEW dbo.uvu_emp_employment_most_rec >>>'
-GO
+GO;

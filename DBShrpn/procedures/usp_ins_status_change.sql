@@ -1815,4 +1815,4 @@ IF OBJECT_ID(N'dbo.usp_ins_status_change', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_ins_status_change >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_ins_status_change >>>'
-GO
+GO;

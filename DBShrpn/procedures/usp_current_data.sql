@@ -258,4 +258,4 @@ IF OBJECT_ID(N'dbo.usp_current_data', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_current_data >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_current_data >>>'
-GO
+GO;

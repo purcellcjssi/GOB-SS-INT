@@ -11,7 +11,7 @@ END
 go
 SET ANSI_NULLS ON
 GO
-SET QUOTED_IDENTIFIER OFF
+SET QUOTED_IDENTIFIER ON
 GO
 
 /*************************************************************************************
@@ -1165,4 +1165,4 @@ IF OBJECT_ID(N'dbo.usp_upd_hrpn_02_trn', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_upd_hrpn_02_trn >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_upd_hrpn_02_trn >>>'
-GO
+GO;

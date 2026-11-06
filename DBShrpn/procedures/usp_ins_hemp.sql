@@ -3,8 +3,6 @@ GO
 
 SET ANSI_NULLS OFF
 GO
-SET QUOTED_IDENTIFIER OFF
-GO
 
 
 CREATE procedure [dbo].[usp_ins_hemp]
@@ -2540,4 +2538,4 @@ commit transaction
 
 GO
 ALTER AUTHORIZATION ON [dbo].[usp_ins_hemp] TO  SCHEMA OWNER
-GO
+GO;

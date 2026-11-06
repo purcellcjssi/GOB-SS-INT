@@ -888,4 +888,4 @@ IF OBJECT_ID(N'dbo.usp_ins_labor_group', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_ins_labor_group >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_ins_labor_group >>>'
-GO
+GO;

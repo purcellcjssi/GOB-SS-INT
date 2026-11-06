@@ -20,7 +20,7 @@ VALUES
 , (N'DBS', N'GHR', N'RUN_EVENT', N'I', N'Run event every 30 minutes', N'DBS', N'', CAST(N'1900-01-01 00:00:00.000' AS DateTime), CAST(N'2999-12-31 23:59:59.000' AS DateTime), CAST(N'2023-06-26 21:22:30.730' AS DateTime), CAST(N'1900-01-01 00:00:00.000' AS DateTime), 0, 0, N'EN', N'', N'', N'RUN', N'RUN', N'TO:jgross@smartsi.com + SMTP:jgross@smartsi.com', N'A', N'', 0, N'N', N'N', N'N', N'N', N'N', N'N', N'', CAST(N'1900-01-01 00:00:00.000' AS DateTime), 2)
 , (N'DBS', N'GHR', N'SRV_TO_SRV_COPY', N'I', N'Setup the Interface in development', N'DBS', N'', CAST(N'1900-01-01 00:00:00.000' AS DateTime), CAST(N'2999-12-31 23:59:59.000' AS DateTime), CAST(N'2023-06-26 21:22:39.993' AS DateTime), CAST(N'1900-01-01 00:00:00.000' AS DateTime), 0, 0, N'EN', N'', N'', N'FTP', N'FTP', N'TO:jgross@smartsi.com + SMTP:jgross@smartsi.com', N'A', N'', 0, N'N', N'N', N'N', N'N', N'N', N'N', N'', CAST(N'1900-01-01 00:00:00.000' AS DateTime), 1)
 , (N'DBS', N'GHR', N'VERIFCATION_0000', N'I', N'GSP_VERIFICATION_RPT', N'DBS', N'', CAST(N'2999-12-31 00:00:00.000' AS DateTime), CAST(N'2999-12-31 23:59:59.000' AS DateTime), CAST(N'2023-06-26 21:22:48.040' AS DateTime), CAST(N'2022-01-19 11:03:23.067' AS DateTime), 0, 0, N'EN', N'', N'', N'VER01', N'VER01', N'TO:jgross@smartsi.com + SMTP:jgross@smartsi.com; TO:sao-psc@gov.gd + SMTP:sao-psc@gov.gd; TO:rachel.brizan@mof.gov.gd + SMTP:rachel.brizan@mof.gov.gd; TO:dorran.strachan@gov.gd + SMTP:dorran.strachan@gov.gd', N'A', N'', 0, N'N', N'Y', N'N', N'N', N'N', N'N', N'', CAST(N'1900-01-01 00:00:00.000' AS DateTime), 173);
-GO
+GO;
 USE [DBSpscb];
 GO
 
@@ -60,7 +60,8 @@ VALUES
 , (N'SSVENUS'	, N'C:\FTP_DATA\EXEDEV\Batch\SSVENUS.BAT'				, N'', N'', 0, N'DBS'		, N'PUBLIC', 2)
 , (N'UPDBANK'	, N'C:\FTP_DATA\EXEDEV\BATCH\UPDBANK.bat'				, N'', N'', 0, N'DBS'		, N'PUBLIC', 2)
 , (N'UPLOAD'	, N'C:\FTP_DATA\EXEDEV\BATCH\UPLOAD_GOSL.bat'			, N'', N'', 0, N'JGROSS'	, N'PUBLIC', 5);
-GOUSE DBSpscb;
+GO;
+USE DBSpscb;
 GO
 
 
@@ -106,4 +107,5 @@ VALUES
 , (N'DBS', N'GHR', N'RUN_EVENT', N'RUN', 1, N'', N'', 0, 1, 0, N'WINCLASS', 50, N'', 0, N'', CAST(N'2023-06-26 21:22:30.730' AS DateTime), CAST(N'1900-01-01 00:00:00.000' AS DateTime), 0, N'Connect Stored Procedure', N'RUN_EVENT', 2)
 , (N'DBS', N'GHR', N'SRV_TO_SRV_COPY', N'FTP', 1, N'', N'', 0, 1, 0, N'WINCLASS', 50, N'', 0, N'', CAST(N'2024-06-10 14:04:13.523' AS DateTime), CAST(N'1900-01-01 00:00:00.000' AS DateTime), 0, N'Connect Stored Procedure', N'USP_SRV_TO_SRV_COPY', 2)
 , (N'DBS', N'GHR', N'VERIFCATION_0000', N'VER01', 1, N'', N'', 0, 1, 0, N'WINCLASS', 50, N'', 0, N'', CAST(N'2024-06-10 14:04:21.807' AS DateTime), CAST(N'2022-01-19 11:03:23.060' AS DateTime), 0, N'Connect Stored Procedure', N'USP_VERIFICATION_RPT', 114);
-GO
+GO;
+

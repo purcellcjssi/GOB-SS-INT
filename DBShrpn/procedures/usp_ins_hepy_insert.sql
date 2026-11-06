@@ -3,7 +3,7 @@ GO
 /****** Object:  StoredProcedure [dbo].[usp_ins_hepy_insert]    Script Date: 4/1/2025 4:33:00 PM ******/
 SET ANSI_NULLS OFF
 GO
-SET QUOTED_IDENTIFIER OFF
+SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE procedure [dbo].[usp_ins_hepy_insert]
@@ -491,4 +491,4 @@ setandreturn:
 
 GO
 ALTER AUTHORIZATION ON [dbo].[usp_ins_hepy_insert] TO  SCHEMA OWNER
-GO
+GO;

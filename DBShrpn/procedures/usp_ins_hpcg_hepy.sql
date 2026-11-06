@@ -651,4 +651,4 @@ IF OBJECT_ID(N'dbo.usp_ins_hpcg_hepy', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_ins_hpcg_hepy >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_ins_hpcg_hepy >>>'
-GO
+GO;
