@@ -2538,4 +2538,5 @@ commit transaction
 
 GO
 ALTER AUTHORIZATION ON [dbo].[usp_ins_hemp] TO  SCHEMA OWNER
-GO;
+GO
+;

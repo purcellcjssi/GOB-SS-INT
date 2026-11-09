@@ -219,4 +219,5 @@ Commit transaction
 
 GO
 ALTER AUTHORIZATION ON [dbo].[usp_upd_hmpl_chgid] TO  SCHEMA OWNER
-GO;
+GO
+;

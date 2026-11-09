@@ -206,4 +206,5 @@ IF OBJECT_ID(N'dbo.usp_upd_hmpl_reactivate', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_upd_hmpl_reactivate >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_upd_hmpl_reactivate >>>'
-GO;
+GO
+;

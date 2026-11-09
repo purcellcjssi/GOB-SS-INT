@@ -63,7 +63,8 @@ IF OBJECT_ID(N'dbo.usp_cleanup_tbl', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_cleanup_tbl >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_cleanup_tbl >>>'
-GO;
+GO
+;
 USE DBShrpn
 GO
 
@@ -324,7 +325,8 @@ IF OBJECT_ID(N'dbo.usp_current_data', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_current_data >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_current_data >>>'
-GO;
+GO
+;
 USE DBShrpn
 GO
 
@@ -484,7 +486,8 @@ IF OBJECT_ID(N'dbo.usp_ghr_int_validate_bulkcopy', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_ghr_int_validate_bulkcopy >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_ghr_int_validate_bulkcopy >>>'
-GO;
+GO
+;
 USE DBShrpn
 go
 IF OBJECT_ID(N'dbo.usp_hsp_upd_hasg') IS NOT NULL
@@ -1386,7 +1389,8 @@ IF OBJECT_ID(N'dbo.usp_hsp_upd_hasg', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_hsp_upd_hasg >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_hsp_upd_hasg >>>'
-GO;
+GO
+;
 USE DBShrpn
 go
 IF OBJECT_ID(N'dbo.usp_hsp_upd_hasg_reassign') IS NOT NULL
@@ -2916,7 +2920,8 @@ IF OBJECT_ID(N'dbo.usp_hsp_upd_hasg_reassign', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_hsp_upd_hasg_reassign >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_hsp_upd_hasg_reassign >>>'
-GO;
+GO
+;
 USE DBShrpn
 GO
 
@@ -3025,7 +3030,8 @@ IF OBJECT_ID(N'dbo.usp_ins_ghr_historical_message', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_ins_ghr_historical_message >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_ins_ghr_historical_message >>>'
-GO;
+GO
+;
 USE [DBShrpn]
 GO
 
@@ -5566,7 +5572,8 @@ commit transaction
 
 GO
 ALTER AUTHORIZATION ON [dbo].[usp_ins_hemp] TO  SCHEMA OWNER
-GO;
+GO
+;
 USE [DBShrpn]
 GO
 /****** Object:  StoredProcedure [dbo].[usp_ins_hemp_02]    Script Date: 4/1/2025 4:33:00 PM ******/
@@ -6092,7 +6099,8 @@ if @p_cursor_rc = 50436
 
 GO
 ALTER AUTHORIZATION ON [dbo].[usp_ins_hemp_02] TO  SCHEMA OWNER
-GO;
+GO
+;
 USE [DBShrpn]
 GO
 /****** Object:  StoredProcedure [dbo].[usp_ins_hemp_03]    Script Date: 4/1/2025 4:33:00 PM ******/
@@ -6470,6 +6478,7 @@ else
 GO
 ALTER AUTHORIZATION ON [dbo].[usp_ins_hemp_03] TO  SCHEMA OWNER
 GO
+;
 USE [DBShrpn]
 GO
 /****** Object:  StoredProcedure [dbo].[usp_ins_hemp_04]    Script Date: 4/1/2025 4:33:00 PM ******/
@@ -6796,7 +6805,8 @@ End
 
 GO
 ALTER AUTHORIZATION ON [dbo].[usp_ins_hemp_04] TO  SCHEMA OWNER
-GO;
+GO
+;
 USE [DBShrpn]
 GO
 /****** Object:  StoredProcedure [dbo].[usp_ins_hepy_audit]    Script Date: 4/1/2025 4:33:00 PM ******/
@@ -7183,7 +7193,8 @@ end
 
 GO
 ALTER AUTHORIZATION ON [dbo].[usp_ins_hepy_audit] TO  SCHEMA OWNER
-GO;
+GO
+;
 USE [DBShrpn]
 GO
 /****** Object:  StoredProcedure [dbo].[usp_ins_hepy_insert]    Script Date: 4/1/2025 4:33:00 PM ******/
@@ -7677,7 +7688,8 @@ setandreturn:
 
 GO
 ALTER AUTHORIZATION ON [dbo].[usp_ins_hepy_insert] TO  SCHEMA OWNER
-GO;
+GO
+;
 USE DBShrpn
 go
 IF OBJECT_ID(N'dbo.usp_ins_hpcg_hepy') IS NOT NULL
@@ -8331,7 +8343,8 @@ IF OBJECT_ID(N'dbo.usp_ins_hpcg_hepy', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_ins_hpcg_hepy >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_ins_hpcg_hepy >>>'
-GO;
+GO
+;
 USE DBShrpn
 GO
 
@@ -9222,7 +9235,8 @@ IF OBJECT_ID(N'dbo.usp_ins_labor_group', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_ins_labor_group >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_ins_labor_group >>>'
-GO;
+GO
+;
 USE DBShrpn
 GO
 
@@ -9906,7 +9920,8 @@ IF OBJECT_ID(N'dbo.usp_ins_name_change', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_ins_name_change >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_ins_name_change >>>'
-GO;
+GO
+;
 USE DBShrpn
 GO
 
@@ -11673,7 +11688,8 @@ IF OBJECT_ID(N'dbo.usp_ins_new_hire', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_ins_new_hire >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_ins_new_hire >>>'
-GO;
+GO
+;
 USE DBShrpn
 GO
 
@@ -13005,7 +13021,8 @@ IF OBJECT_ID(N'dbo.usp_ins_pay_element', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_ins_pay_element >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_ins_pay_element >>>'
-GO;
+GO
+;
 USE DBShrpn
 GO
 
@@ -13856,7 +13873,8 @@ IF OBJECT_ID(N'dbo.usp_ins_pay_group', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_ins_pay_group >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_ins_pay_group >>>'
-GO;
+GO
+;
 USE DBShrpn
 GO
 
@@ -15204,7 +15222,8 @@ IF OBJECT_ID(N'dbo.usp_ins_position_title', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_ins_position_title >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_ins_position_title >>>'
-GO;
+GO
+;
 USE DBShrpn
 GO
 
@@ -16716,7 +16735,8 @@ IF OBJECT_ID(N'dbo.usp_ins_salary_change', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_ins_salary_change >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_ins_salary_change >>>'
-GO;
+GO
+;
 USE DBShrpn
 GO
 
@@ -18534,7 +18554,8 @@ IF OBJECT_ID(N'dbo.usp_ins_status_change', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_ins_status_change >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_ins_status_change >>>'
-GO;
+GO
+;
 USE DBShrpn
 GO
 
@@ -19975,7 +19996,8 @@ IF OBJECT_ID(N'dbo.usp_perform_transfer', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_perform_transfer >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_perform_transfer >>>'
-GO;
+GO
+;
 USE DBShrpn;
 GO
 
@@ -20046,6 +20068,9 @@ GO
                                                     1) Disabled Labor Group (Event 09)
                                                     2) Disabled GOSL Ganymede employee id translation
             08/11/2026                              3) Added email address to interface and audit tables
+    3.0.00  11/06/2026  CJP                     - GOB
+                                                    1) Replaced use of TRY_CONVERT() with ufn_TryConvertDate()
+                                                        - GOB is on SQL Server 2008 R2 and TRY_CONVERT() is not available
 
 ************************************************************************************/
 
@@ -20273,7 +20298,7 @@ BEGIN
             , LEFT(t.emp_id, 15) AS emp_id
             , CASE
                 WHEN (LEN(RTRIM(t.eff_date)) = 0) THEN @v_END_OF_TIME_DATE
-                ELSE COALESCE(TRY_CONVERT(datetime, t.eff_date), @v_BAD_DATE_INDICATOR)
+                ELSE COALESCE(dbo.ufn_TryConvertDate(t.eff_date), @v_BAD_DATE_INDICATOR)
               END AS eff_date
             , LEFT(t.first_name, 25) AS first_name
             , LEFT(t.first_middle_name, 25) AS first_middle_name
@@ -20281,20 +20306,20 @@ BEGIN
             , UPPER(LEFT(t.empl_id, 10)) AS empl_id
             , LEFT(t.national_id_type_code, 5) AS national_id_type_code
             , LEFT(t.national_id, 20) AS national_id
-            , COALESCE(TRY_CONVERT(int, t.organization_group_id), 0) AS organization_group_id
+            , COALESCE(dbo.ufn_TryConvertInt(t.organization_group_id), 0) AS organization_group_id
             , @v_EMPTY_SPACE AS organization_chart_name
             , @v_EMPTY_SPACE AS organization_unit_name
             , LEFT(t.emp_status_classn_code, 2) AS emp_status_classn_code
             , LEFT(t.position_title, 50) AS position_title    -- trim value since HCM sends it over as char(60)
             , LEFT(UPPER(t.employment_type_code), 70) AS employment_type_code
-            , COALESCE(TRY_CONVERT(money, t.annual_salary_amt), 0.00) AS annual_salary_amt
+            , COALESCE(dbo.ufn_TryConvertDecimal(t.annual_salary_amt), 0.00) AS annual_salary_amt
             , CASE
                 WHEN (LEN(RTRIM(t.begin_date)) = 0) THEN @v_END_OF_TIME_DATE
-                ELSE COALESCE(TRY_CONVERT(datetime, t.begin_date), @v_BAD_DATE_INDICATOR)
+                ELSE COALESCE(dbo.ufn_TryConvertDate(t.begin_date), @v_BAD_DATE_INDICATOR)
                 END AS begin_date
             , CASE
                 WHEN (LEN(RTRIM(t.end_date)) = 0) THEN @v_END_OF_TIME_DATE
-                ELSE COALESCE(TRY_CONVERT(datetime, t.end_date), @v_BAD_DATE_INDICATOR)
+                ELSE COALESCE(dbo.ufn_TryConvertDate(t.end_date), @v_BAD_DATE_INDICATOR)
                 END AS end_date
             , LEFT(t.pay_status_code, 1) AS pay_status_code
             , UPPER(LEFT(t.pay_group_id, 10)) AS pay_group_id
@@ -20306,29 +20331,29 @@ BEGIN
             , LEFT(t.reason_code, 5) AS reason_code
             , CASE
                 WHEN (LEN(RTRIM(t.emp_expected_return_date)) = 0) THEN @v_END_OF_TIME_DATE
-                ELSE COALESCE(TRY_CONVERT(datetime, t.emp_expected_return_date), @v_BAD_DATE_INDICATOR)
+                ELSE COALESCE(dbo.ufn_TryConvertDate(t.emp_expected_return_date), @v_BAD_DATE_INDICATOR)
               END AS emp_expected_return_date
             , CASE
                 WHEN (LEN(RTRIM(t.pay_through_date)) = 0) THEN @v_END_OF_TIME_DATE
-                ELSE COALESCE(TRY_CONVERT(datetime, t.pay_through_date), @v_BAD_DATE_INDICATOR)
+                ELSE COALESCE(dbo.ufn_TryConvertDate(t.pay_through_date), @v_BAD_DATE_INDICATOR)
               END AS pay_through_date
             , CASE
                 WHEN (LEN(RTRIM(t.emp_death_date)) = 0) THEN @v_END_OF_TIME_DATE
-                ELSE COALESCE(TRY_CONVERT(datetime, t.emp_death_date), @v_BAD_DATE_INDICATOR)
+                ELSE COALESCE(dbo.ufn_TryConvertDate(t.emp_death_date), @v_BAD_DATE_INDICATOR)
               END AS emp_death_date
             , LEFT(t.consider_for_rehire_ind, 1) AS consider_for_rehire_ind
             , UPPER(LEFT(t.pay_element_id, 10)) AS pay_element_id
-            , COALESCE(TRY_CONVERT(money, t.emp_calculation), 0.00) AS emp_calculation
+            , COALESCE(dbo.ufn_TryConvertDecimal(t.emp_calculation), 0.00) AS emp_calculation
             , LEFT(t.tax_flag, 1) AS tax_flag
             , LEFT(t.nic_flag, 1) AS nic_flag
-            , COALESCE(TRY_CONVERT(money, t.tax_ceiling_amt), 0.00) AS tax_ceiling_amt
+            , COALESCE(dbo.ufn_TryConvertDecimal(t.tax_ceiling_amt), 0.00) AS tax_ceiling_amt
             , LEFT(t.labor_grp_code, 5) AS labor_grp_code
             , LEFT(t.file_source, 50) AS file_source
-            , COALESCE(TRY_CONVERT(money, t.annual_hrs_per_fte), 0.00) AS annual_hrs_per_fte
-            , COALESCE(TRY_CONVERT(money, t.annual_rate), 0.00) AS annual_rate
+            , COALESCE(dbo.ufn_TryConvertDecimal(t.annual_hrs_per_fte), 0.00) AS annual_hrs_per_fte
+            , COALESCE(dbo.ufn_TryConvertDecimal(t.annual_rate), 0.00) AS annual_rate
             , CASE
                 WHEN (LEN(RTRIM(t.birth_date)) = 0) THEN @v_END_OF_TIME_DATE
-                ELSE COALESCE(TRY_CONVERT(datetime, t.birth_date), @v_BAD_DATE_INDICATOR)
+                ELSE COALESCE(dbo.ufn_TryConvertDate(t.birth_date), @v_BAD_DATE_INDICATOR)
               END AS birth_date
             , LEFT(t.gender, 1) AS gender
             , LEFT(t.email_address, 60) AS email_address        -- CJP 8/11/2026
@@ -20887,7 +20912,8 @@ IF OBJECT_ID(N'dbo.usp_sel_employee_events', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_sel_employee_events >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_sel_employee_events >>>'
-GO;
+GO
+;
 USE DBShrpn
 GO
 
@@ -21383,7 +21409,8 @@ IF OBJECT_ID(N'dbo.usp_upd_emp_employment', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_upd_emp_employment >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_upd_emp_employment >>>'
-GO;
+GO
+;
 USE [DBShrpn]
 GO
 /****** Object:  StoredProcedure [dbo].[usp_upd_hmpl_chgid]    Script Date: 4/1/2025 4:33:00 PM ******/
@@ -21605,7 +21632,8 @@ Commit transaction
 
 GO
 ALTER AUTHORIZATION ON [dbo].[usp_upd_hmpl_chgid] TO  SCHEMA OWNER
-GO;
+GO
+;
 USE DBShrpn
 go
 IF OBJECT_ID(N'dbo.usp_upd_hmpl_inactivate') IS NOT NULL
@@ -21820,7 +21848,8 @@ IF OBJECT_ID(N'dbo.usp_upd_hmpl_inactivate', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_upd_hmpl_inactivate >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_upd_hmpl_inactivate >>>'
-GO;
+GO
+;
 USE DBShrpn
 go
 IF OBJECT_ID(N'dbo.usp_upd_hmpl_reactivate') IS NOT NULL
@@ -22029,7 +22058,8 @@ IF OBJECT_ID(N'dbo.usp_upd_hmpl_reactivate', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_upd_hmpl_reactivate >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_upd_hmpl_reactivate >>>'
-GO;
+GO
+;
 USE DBShrpn
 go
 IF OBJECT_ID(N'dbo.usp_upd_hmpl_rehire') IS NOT NULL
@@ -23171,7 +23201,8 @@ IF OBJECT_ID(N'dbo.usp_upd_hmpl_rehire', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_upd_hmpl_rehire >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_upd_hmpl_rehire >>>'
-GO;
+GO
+;
 USE DBShrpn
 go
 IF OBJECT_ID(N'dbo.usp_upd_hmpl_terminate') IS NOT NULL
@@ -24506,7 +24537,8 @@ IF OBJECT_ID(N'dbo.usp_upd_hmpl_terminate', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_upd_hmpl_terminate >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_upd_hmpl_terminate >>>'
-GO;
+GO
+;
 USE DBShrpn
 go
 IF OBJECT_ID(N'dbo.usp_upd_hrpn_02_trn') IS NOT NULL
@@ -25674,7 +25706,8 @@ IF OBJECT_ID(N'dbo.usp_upd_hrpn_02_trn', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_upd_hrpn_02_trn >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_upd_hrpn_02_trn >>>'
-GO;
+GO
+;
 USE [DBShrpn]
 GO
 /****** Object:  StoredProcedure [dbo].[usp_val_hepy_audit]    Script Date: 4/1/2025 4:33:00 PM ******/
@@ -25747,7 +25780,8 @@ end
 
 GO
 ALTER AUTHORIZATION ON [dbo].[usp_val_hepy_audit] TO  SCHEMA OWNER
-GO;
+GO
+;
 USE DBShrpn
 GO
 
@@ -26213,5 +26247,6 @@ IF OBJECT_ID(N'dbo.usp_verification_rpt_csv', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_verification_rpt_csv >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_verification_rpt_csv >>>'
-GO;
+GO
+;
 

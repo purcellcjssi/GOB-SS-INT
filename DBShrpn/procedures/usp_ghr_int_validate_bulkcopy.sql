@@ -157,4 +157,5 @@ IF OBJECT_ID(N'dbo.usp_ghr_int_validate_bulkcopy', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_ghr_int_validate_bulkcopy >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_ghr_int_validate_bulkcopy >>>'
-GO;
+GO
+;

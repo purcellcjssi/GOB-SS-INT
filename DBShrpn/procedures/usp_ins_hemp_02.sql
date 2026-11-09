@@ -523,4 +523,5 @@ if @p_cursor_rc = 50436
 
 GO
 ALTER AUTHORIZATION ON [dbo].[usp_ins_hemp_02] TO  SCHEMA OWNER
-GO;
+GO
+;

@@ -384,4 +384,5 @@ end
 
 GO
 ALTER AUTHORIZATION ON [dbo].[usp_ins_hepy_audit] TO  SCHEMA OWNER
-GO;
+GO
+;

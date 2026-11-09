@@ -63,4 +63,5 @@ IF OBJECT_ID(N'dbo.usp_cleanup_tbl', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_cleanup_tbl >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_cleanup_tbl >>>'
-GO;
+GO
+;

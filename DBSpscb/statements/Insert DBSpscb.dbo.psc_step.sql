@@ -44,4 +44,5 @@ VALUES
 , (N'DBS', N'GHR', N'RUN_EVENT', N'RUN', 1, N'', N'', 0, 1, 0, N'WINCLASS', 50, N'', 0, N'', CAST(N'2023-06-26 21:22:30.730' AS DateTime), CAST(N'1900-01-01 00:00:00.000' AS DateTime), 0, N'Connect Stored Procedure', N'RUN_EVENT', 2)
 , (N'DBS', N'GHR', N'SRV_TO_SRV_COPY', N'FTP', 1, N'', N'', 0, 1, 0, N'WINCLASS', 50, N'', 0, N'', CAST(N'2024-06-10 14:04:13.523' AS DateTime), CAST(N'1900-01-01 00:00:00.000' AS DateTime), 0, N'Connect Stored Procedure', N'USP_SRV_TO_SRV_COPY', 2)
 , (N'DBS', N'GHR', N'VERIFCATION_0000', N'VER01', 1, N'', N'', 0, 1, 0, N'WINCLASS', 50, N'', 0, N'', CAST(N'2024-06-10 14:04:21.807' AS DateTime), CAST(N'2022-01-19 11:03:23.060' AS DateTime), 0, N'Connect Stored Procedure', N'USP_VERIFICATION_RPT', 114);
-GO;
+GO
+;

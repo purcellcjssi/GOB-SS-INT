@@ -106,4 +106,5 @@ IF OBJECT_ID(N'dbo.usp_ins_ghr_historical_message', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_ins_ghr_historical_message >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_ins_ghr_historical_message >>>'
-GO;
+GO
+;

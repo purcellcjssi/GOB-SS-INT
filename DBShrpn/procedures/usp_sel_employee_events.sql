@@ -68,6 +68,9 @@ GO
                                                     1) Disabled Labor Group (Event 09)
                                                     2) Disabled GOSL Ganymede employee id translation
             08/11/2026                              3) Added email address to interface and audit tables
+    3.0.00  11/06/2026  CJP                     - GOB
+                                                    1) Replaced use of TRY_CONVERT() with ufn_TryConvertDate()
+                                                        - GOB is on SQL Server 2008 R2 and TRY_CONVERT() is not available
 
 ************************************************************************************/
 
@@ -295,7 +298,7 @@ BEGIN
             , LEFT(t.emp_id, 15) AS emp_id
             , CASE
                 WHEN (LEN(RTRIM(t.eff_date)) = 0) THEN @v_END_OF_TIME_DATE
-                ELSE COALESCE(TRY_CONVERT(datetime, t.eff_date), @v_BAD_DATE_INDICATOR)
+                ELSE COALESCE(dbo.ufn_TryConvertDate(t.eff_date), @v_BAD_DATE_INDICATOR)
               END AS eff_date
             , LEFT(t.first_name, 25) AS first_name
             , LEFT(t.first_middle_name, 25) AS first_middle_name
@@ -303,20 +306,20 @@ BEGIN
             , UPPER(LEFT(t.empl_id, 10)) AS empl_id
             , LEFT(t.national_id_type_code, 5) AS national_id_type_code
             , LEFT(t.national_id, 20) AS national_id
-            , COALESCE(TRY_CONVERT(int, t.organization_group_id), 0) AS organization_group_id
+            , COALESCE(dbo.ufn_TryConvertInt(t.organization_group_id), 0) AS organization_group_id
             , @v_EMPTY_SPACE AS organization_chart_name
             , @v_EMPTY_SPACE AS organization_unit_name
             , LEFT(t.emp_status_classn_code, 2) AS emp_status_classn_code
             , LEFT(t.position_title, 50) AS position_title    -- trim value since HCM sends it over as char(60)
             , LEFT(UPPER(t.employment_type_code), 70) AS employment_type_code
-            , COALESCE(TRY_CONVERT(money, t.annual_salary_amt), 0.00) AS annual_salary_amt
+            , COALESCE(dbo.ufn_TryConvertDecimal(t.annual_salary_amt), 0.00) AS annual_salary_amt
             , CASE
                 WHEN (LEN(RTRIM(t.begin_date)) = 0) THEN @v_END_OF_TIME_DATE
-                ELSE COALESCE(TRY_CONVERT(datetime, t.begin_date), @v_BAD_DATE_INDICATOR)
+                ELSE COALESCE(dbo.ufn_TryConvertDate(t.begin_date), @v_BAD_DATE_INDICATOR)
                 END AS begin_date
             , CASE
                 WHEN (LEN(RTRIM(t.end_date)) = 0) THEN @v_END_OF_TIME_DATE
-                ELSE COALESCE(TRY_CONVERT(datetime, t.end_date), @v_BAD_DATE_INDICATOR)
+                ELSE COALESCE(dbo.ufn_TryConvertDate(t.end_date), @v_BAD_DATE_INDICATOR)
                 END AS end_date
             , LEFT(t.pay_status_code, 1) AS pay_status_code
             , UPPER(LEFT(t.pay_group_id, 10)) AS pay_group_id
@@ -328,29 +331,29 @@ BEGIN
             , LEFT(t.reason_code, 5) AS reason_code
             , CASE
                 WHEN (LEN(RTRIM(t.emp_expected_return_date)) = 0) THEN @v_END_OF_TIME_DATE
-                ELSE COALESCE(TRY_CONVERT(datetime, t.emp_expected_return_date), @v_BAD_DATE_INDICATOR)
+                ELSE COALESCE(dbo.ufn_TryConvertDate(t.emp_expected_return_date), @v_BAD_DATE_INDICATOR)
               END AS emp_expected_return_date
             , CASE
                 WHEN (LEN(RTRIM(t.pay_through_date)) = 0) THEN @v_END_OF_TIME_DATE
-                ELSE COALESCE(TRY_CONVERT(datetime, t.pay_through_date), @v_BAD_DATE_INDICATOR)
+                ELSE COALESCE(dbo.ufn_TryConvertDate(t.pay_through_date), @v_BAD_DATE_INDICATOR)
               END AS pay_through_date
             , CASE
                 WHEN (LEN(RTRIM(t.emp_death_date)) = 0) THEN @v_END_OF_TIME_DATE
-                ELSE COALESCE(TRY_CONVERT(datetime, t.emp_death_date), @v_BAD_DATE_INDICATOR)
+                ELSE COALESCE(dbo.ufn_TryConvertDate(t.emp_death_date), @v_BAD_DATE_INDICATOR)
               END AS emp_death_date
             , LEFT(t.consider_for_rehire_ind, 1) AS consider_for_rehire_ind
             , UPPER(LEFT(t.pay_element_id, 10)) AS pay_element_id
-            , COALESCE(TRY_CONVERT(money, t.emp_calculation), 0.00) AS emp_calculation
+            , COALESCE(dbo.ufn_TryConvertDecimal(t.emp_calculation), 0.00) AS emp_calculation
             , LEFT(t.tax_flag, 1) AS tax_flag
             , LEFT(t.nic_flag, 1) AS nic_flag
-            , COALESCE(TRY_CONVERT(money, t.tax_ceiling_amt), 0.00) AS tax_ceiling_amt
+            , COALESCE(dbo.ufn_TryConvertDecimal(t.tax_ceiling_amt), 0.00) AS tax_ceiling_amt
             , LEFT(t.labor_grp_code, 5) AS labor_grp_code
             , LEFT(t.file_source, 50) AS file_source
-            , COALESCE(TRY_CONVERT(money, t.annual_hrs_per_fte), 0.00) AS annual_hrs_per_fte
-            , COALESCE(TRY_CONVERT(money, t.annual_rate), 0.00) AS annual_rate
+            , COALESCE(dbo.ufn_TryConvertDecimal(t.annual_hrs_per_fte), 0.00) AS annual_hrs_per_fte
+            , COALESCE(dbo.ufn_TryConvertDecimal(t.annual_rate), 0.00) AS annual_rate
             , CASE
                 WHEN (LEN(RTRIM(t.birth_date)) = 0) THEN @v_END_OF_TIME_DATE
-                ELSE COALESCE(TRY_CONVERT(datetime, t.birth_date), @v_BAD_DATE_INDICATOR)
+                ELSE COALESCE(dbo.ufn_TryConvertDate(t.birth_date), @v_BAD_DATE_INDICATOR)
               END AS birth_date
             , LEFT(t.gender, 1) AS gender
             , LEFT(t.email_address, 60) AS email_address        -- CJP 8/11/2026
@@ -909,4 +912,5 @@ IF OBJECT_ID(N'dbo.usp_sel_employee_events', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_sel_employee_events >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_sel_employee_events >>>'
-GO;
+GO
+;

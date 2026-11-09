@@ -493,4 +493,5 @@ IF OBJECT_ID(N'dbo.usp_upd_emp_employment', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_upd_emp_employment >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_upd_emp_employment >>>'
-GO;
+GO
+;

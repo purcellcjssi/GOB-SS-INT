@@ -463,4 +463,5 @@ IF OBJECT_ID(N'dbo.usp_verification_rpt_csv', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_verification_rpt_csv >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_verification_rpt_csv >>>'
-GO;
+GO
+;

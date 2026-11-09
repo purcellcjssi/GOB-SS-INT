@@ -18,7 +18,8 @@ GO
   Date:         11/05/2026
 
   Description:
-  Converts parameter value to date otherwise NULL is returned
+  Converts parameter value to date otherwise NULL is returned.
+  This function was required for GOB since function TRY_CONVERT() is not available on SQL Server 2008R2.
 
   Parameters:
   @value  = The value to convert to a date
@@ -40,10 +41,10 @@ CREATE FUNCTION dbo.ufn_TryConvertDate
 (
     @value nvarchar(4000)
 )
-RETURNS date
+RETURNS datetime
 AS
 BEGIN
-    RETURN (SELECT CONVERT(date, CASE
+    RETURN (SELECT CONVERT(datetime, CASE
         WHEN ISDATE(@value) = 1 THEN @value
     END));
 END
@@ -59,4 +60,5 @@ IF OBJECT_ID('dbo.ufn_TryConvertDate') IS NOT NULL
     PRINT '<<< CREATED FUNCTION dbo.ufn_TryConvertDate >>>'
 ELSE
     PRINT '<<< FAILED CREATING FUNCTION dbo.ufn_TryConvertDate >>>'
-GO;
+GO
+;

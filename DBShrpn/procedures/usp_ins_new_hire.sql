@@ -1764,4 +1764,5 @@ IF OBJECT_ID(N'dbo.usp_ins_new_hire', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_ins_new_hire >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_ins_new_hire >>>'
-GO;
+GO
+;

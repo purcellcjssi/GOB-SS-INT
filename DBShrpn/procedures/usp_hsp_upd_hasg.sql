@@ -899,4 +899,5 @@ IF OBJECT_ID(N'dbo.usp_hsp_upd_hasg', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_hsp_upd_hasg >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_hsp_upd_hasg >>>'
-GO;
+GO
+;

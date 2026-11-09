@@ -324,4 +324,5 @@ End
 
 GO
 ALTER AUTHORIZATION ON [dbo].[usp_ins_hemp_04] TO  SCHEMA OWNER
-GO;
+GO
+;

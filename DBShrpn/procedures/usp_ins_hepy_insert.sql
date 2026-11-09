@@ -491,4 +491,5 @@ setandreturn:
 
 GO
 ALTER AUTHORIZATION ON [dbo].[usp_ins_hepy_insert] TO  SCHEMA OWNER
-GO;
+GO
+;

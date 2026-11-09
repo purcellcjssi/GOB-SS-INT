@@ -71,4 +71,5 @@ IF OBJECT_ID('dbo.ufn_ret_job_or_pos_id') IS NOT NULL
     PRINT '<<< CREATED FUNCTION dbo.ufn_ret_job_or_pos_id >>>'
 ELSE
     PRINT '<<< FAILED CREATING FUNCTION dbo.ufn_ret_job_or_pos_id >>>'
-GO;
+GO
+;

@@ -70,4 +70,5 @@ end
 
 GO
 ALTER AUTHORIZATION ON [dbo].[usp_val_hepy_audit] TO  SCHEMA OWNER
-GO;
+GO
+;

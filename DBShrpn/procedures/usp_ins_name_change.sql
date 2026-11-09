@@ -681,4 +681,5 @@ IF OBJECT_ID(N'dbo.usp_ins_name_change', N'P') IS NOT NULL
     PRINT N'<<< CREATED PROCEDURE dbo.usp_ins_name_change >>>'
 ELSE
     PRINT N'<<< FAILED CREATING PROCEDURE dbo.usp_ins_name_change >>>'
-GO;
+GO
+;
